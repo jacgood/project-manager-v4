@@ -19,6 +19,7 @@ const Dashboard = ({
   return (
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
+      <Link to="/projects">Projects</Link>
       <p className="lead">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>

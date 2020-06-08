@@ -41,7 +41,7 @@ const navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="/dashboard">ProjectManager</Navbar.Brand>
+        <Navbar.Brand href="/projects">ProjectManager</Navbar.Brand>
         {!loading && (
           <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
         )}

@@ -14,6 +14,9 @@ import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 
+import Projects from '../projects/Projects'
+import Project from '../project/Project'
+
 const Routes = props => {
   return (
     <section className="container">
@@ -30,6 +33,8 @@ const Routes = props => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
+        <PrivateRoute exact path="/projects" component={Projects} />
+        <PrivateRoute exact path="/projects/:id" component={Project} />
         <Route component={NotFound} />
       </Switch>
     </section>
