@@ -8,8 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import '../../styles/project.css'
-
+import '../../styles/project.css';
 
 const Projects = ({ getProjects, project: { projects } }) => {
   useEffect(() => {
@@ -18,18 +17,10 @@ const Projects = ({ getProjects, project: { projects } }) => {
 
   return (
     <Fragment>
-      <Container fluid>
-        <Row>
-          <Col className="project">1 of 2</Col>
-          <Col className="project">2 of 2</Col>
-        </Row>
-      </Container>
-      <div className="projects">
-        {projects.map((project) => (
-          <ProjectItem className="project" key={project._id} project={project} />
-        ))}
-      </div>
-  </Fragment>
+      {projects.map((project) => (
+        <ProjectItem className="project" key={project._id} project={project} />
+      ))}
+    </Fragment>
   );
 };
 
@@ -42,4 +33,6 @@ const mapStateToProps = (state) => ({
   project: state.project
 });
 
-export default connect(mapStateToProps, { getProjects })(Projects);
+export default connect(mapStateToProps, {
+  getProjects
+})(Projects);
