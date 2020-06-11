@@ -16,14 +16,14 @@ const initialState = {
   facebook: '',
   linkedin: '',
   youtube: '',
-  instagram: ''
+  instagram: '',
 };
 
 const ProfileForm = ({
   profile: { profile, loading },
   createProfile,
   getCurrentProfile,
-  history
+  history,
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -49,6 +49,7 @@ const ProfileForm = ({
     company,
     website,
     location,
+    name,
     status,
     skills,
     githubusername,
@@ -57,13 +58,13 @@ const ProfileForm = ({
     facebook,
     linkedin,
     youtube,
-    instagram
+    instagram,
   } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     createProfile(formData, history, profile ? true : false);
   };
@@ -98,6 +99,18 @@ const ProfileForm = ({
             placeholder="Company"
             name="company"
             value={company}
+            onChange={onChange}
+          />
+          <small className="form-text">
+            Could be your own company or one you work for
+          </small>
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Full Name"
+            name="name"
+            value={name}
             onChange={onChange}
           />
           <small className="form-text">
@@ -167,8 +180,7 @@ const ProfileForm = ({
           <button
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
-            className="btn btn-light"
-          >
+            className="btn btn-light">
             Add Social Network Links
           </button>
           <span>Optional</span>
@@ -245,11 +257,11 @@ const ProfileForm = ({
 ProfileForm.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(

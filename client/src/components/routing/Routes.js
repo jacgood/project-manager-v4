@@ -14,10 +14,11 @@ import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 
-import Projects from '../projects/Projects'
-import Project from '../project/Project'
+import Projects from '../projects/Projects';
+import Project from '../project/Project';
+import CreateProject from '../project-forms/ProjectForm';
 
-const Routes = props => {
+const Routes = (props) => {
   return (
     <section className="container">
       <Alert />
@@ -35,6 +36,7 @@ const Routes = props => {
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/projects" component={Projects} />
         <PrivateRoute exact path="/projects/:id" component={Project} />
+        <PrivateRoute exact path="/createProject" component={CreateProject} />
         <Route component={NotFound} />
       </Switch>
     </section>

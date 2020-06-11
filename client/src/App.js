@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar'; // sorta done...
-import Sidebar from './components/layout/Sidebar';
 import Landing from './components/layout/Landing'; // need to change photo.. but doneish
 import Routes from './components/routing/Routes';
 
@@ -30,17 +29,10 @@ const App = () => {
         <Fragment>
           <Navbar />
           <Container fluid>
-            <Row>
-              <Col md="auto">
-                <Sidebar />
-              </Col>{' '}
-              <Col>
-                <Switch>
-                  <Route exact path="/" component={Landing} />{' '}
-                  <Route component={Routes} />{' '}
-                </Switch>{' '}
-              </Col>{' '}
-            </Row>{' '}
+            <Switch>
+              <Route exact path="/" component={Landing} />{' '}
+              <Route component={Routes} />{' '}
+            </Switch>{' '}
           </Container>{' '}
         </Fragment>{' '}
       </Router>{' '}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProjects } from '../../actions/project';
 import ProjectItem from './ProjectItem';
-//import ProgressBar from 'react-bootstrap/ProgressBar'
-import Container from 'react-bootstrap/Container';
+import Sidebar from '../layout/Sidebar';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -17,22 +17,33 @@ const Projects = ({ getProjects, project: { projects } }) => {
 
   return (
     <Fragment>
-      {projects.map((project) => (
-        <ProjectItem className="project" key={project._id} project={project} />
-      ))}
+      <Row>
+        <Col ml="auto">
+          <Sidebar />
+        </Col>
+        <Col>
+          {projects.map((project) => (
+            <ProjectItem
+              className="project"
+              key={project._id}
+              project={project}
+            />
+          ))}
+        </Col>
+      </Row>
     </Fragment>
   );
 };
 
 Projects.propTypes = {
   getProjects: PropTypes.func.isRequired,
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  project: state.project
+  project: state.project,
 });
 
 export default connect(mapStateToProps, {
-  getProjects
+  getProjects,
 })(Projects);

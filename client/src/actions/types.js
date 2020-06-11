@@ -30,3 +30,10 @@ export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const PROJECT_ERROR = 'PROJECT_ERROR';
 export const ADD_PROJECT = 'ADD_PROJECT';
+
+export const GET_USER = 'GET_USER';
+export const GET_USERS = 'GET_USERS';
+export const USER_ERROR = 'USER_ERROR';
+export const UPDATE_USER = 'UPDATE_USER';
+export const ADD_USER = 'ADD_USER';
+export const DELETE_USER = 'DELETE_USER';

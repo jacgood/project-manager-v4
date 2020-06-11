@@ -7,7 +7,10 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
 
+const auth = require('../../middleware/auth');
+
 const User = require('../../models/User');
+const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    POST api/users
 // @desc     Register user
@@ -20,7 +23,7 @@ router.post(
     check(
       'password',
       'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 })
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -43,7 +46,7 @@ router.post(
         gravatar.url(email, {
           s: '200',
           r: 'pg',
-          d: 'mm'
+          d: 'mm',
         }),
         { forceHttps: true }
       );
@@ -52,7 +55,7 @@ router.post(
         name,
         email,
         avatar,
-        password
+        password,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -63,8 +66,8 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jwt.sign(
@@ -82,5 +85,33 @@ router.post(
     }
   }
 );
+
+// @route    GET api/users
+// @desc     Get all users
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    GET api/users/:id
+// @desc     Get user by ID
+// @access   Private
+router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
